@@ -60,7 +60,7 @@ public class CustomFileUtil {
         multipartFiles.forEach(multipartFile -> {
             // 32자리 16진수 : 고유한 식별자를 생성
             String filename = UUID.randomUUID().toString() + "_" + multipartFile.getOriginalFilename();
-
+            // 파일 시스템 경로 : 파일 입출력에 사용
             Path savePath = Paths.get(uploadPath, filename);
 
             try {
