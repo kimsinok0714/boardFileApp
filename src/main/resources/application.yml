@@ -13,6 +13,7 @@ spring:
     multipart:
       max-request-size: 30MB  # 클라이언트가 여러 파일을 한 번에 업로드할 때 요청의 총 크기가 30MB를 넘으면 안됨
       max-file-size: 10MB     # 개별 파일의 최대 크기
+      location: /tmp/uploads
 
 # 업로드 파일이 저장될 경로
 com:
