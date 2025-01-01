@@ -175,6 +175,8 @@ public class CustomFileUtil {
 
             String thumbnailFilename = "s_" + filename;
 
+            // Path 파일 시스템 경로를 나타내며 경로를 통해 해당 파일에 접근 가능하다.
+            // 플랫폼 독립성 제공
             Path thumbnailPath = Paths.get(uploadPath, thumbnailFilename);
             Path filePath = Paths.get(uploadPath, filename);
 
