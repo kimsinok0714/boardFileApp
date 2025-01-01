@@ -1,0 +1,2 @@
+-- INSERT INTO articles (id, title, content, created_at, updated_at)
+-- VALUES (1, 'Test Article', 'This is a test article.', NOW(), NOW());

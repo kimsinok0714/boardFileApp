@@ -1,0 +1,40 @@
+
+spring:
+  application:
+    name: boardapp
+  # DB 연결 정보
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_board?serverTimezone=Asia/Seoul&characterEncoding=utf8
+    username: react
+    password: 1234
+  # 파일 업로드를 위한 설정
+  servlet:
+    multipart:
+      max-request-size: 30MB  # 클라이언트가 여러 파일을 한 번에 업로드할 때 요청의 총 크기가 30MB를 넘으면 안됨
+      max-file-size: 10MB     # 개별 파일의 최대 크기
+
+# 업로드 파일이 저장될 경로
+com:
+  example:
+    boardapp:
+      upload:
+        path: upload
+
+
+# MyBatis 설정 정보
+mybatis:  
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.example.boardapp.domain
+
+
+# 로그 
+logging:
+  level:
+    com.example.boardapp.mapper: DEBUG
+    org.mybatis: DEBUG
+    org.springframework.jdbc.core: DEBUG
+
+
+
+

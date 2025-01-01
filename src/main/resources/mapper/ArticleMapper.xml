@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+  <mapper namespace="com.example.boardapp.mapper.ArticleMapper">
+  
+ 
+    <select id="selectArticleList" resultType="ArticleDto">
+
+        SELECT 
+          id, 
+          title, 
+          contents, 
+          writer,
+          reg_date as regDate
+        FROM article
+        ORDER BY id DESC  
+        
+    </select>
+
+  
+  
+    <insert id="insertArticle" parameterType="ArticleDto">
+
+      <selectKey resultType="int" keyProperty="id" order="AFTER">
+
+          SELECT MAX(id) AS id
+          FROM article
+
+      </selectKey>
+
+        INSERT INTO article (title, contents, writer, reg_date)
+        VALUES (#{title}, #{contents}, #{writer}, #{regDate})
+          
+    </insert>
+
+
+    <!-- <select id="selectArticleById" parameterType="int" resultType="ArticleDto">
+
+        SELECT 
+            id, 
+            title, 
+            contents, 
+            writer,
+            reg_date as regDate
+        FROM article
+        WHERE id = #{id}
+        
+          
+    </select> -->
+
+
+    <update id="updateArticle" parameterType="ArticleDto">
+    
+      UPDATE article
+      SET title = #{title}, contents = #{contents}, writer = #{writer}
+      WHERE id = #{id}
+    
+    </update>
+
+  
+
+    <select id="findArticleList" parameterType="com.example.boardapp.util.Criteria" resultType="ArticleDto">
+
+         SELECT 
+            id, 
+            title, 
+            contents, 
+            writer,
+            reg_date as regDate
+          FROM article
+        
+          <if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+            <trim prefix="WHERE">
+            <choose>
+                <when test="keyfield == 'writer'">
+                    writer LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="keyfield == 'contents'">
+                    contents LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="keyfield == 'title'">
+                    title LIKE CONCAT('%', #{keyword}, '%')
+                </when>            
+            </choose>
+            </trim>
+          </if>        
+
+          ORDER BY id DESC
+
+    </select>
+
+
+    <resultMap id="selectArticleByIdResultMap" type="ArticleDto">
+
+      <id property="id" column="id" />
+      <result property="title" column="title" />
+      <result property="contents" column="contents" />
+      <result property="writer" column="writer" />
+      <result property="regDate" column="regDate" />
+      
+      <association property="user" javaType="UserDto">
+        <id property="id" column="userId" />
+        <result property="username" column="username" />
+        <result property="email" column="email" />    
+        <result property="password" column="password" />    
+      </association>
+      
+      <collection property="files" ofType="ArticleFileDto">
+          <id property="id" column="fileId" />
+          <result property="filename" column="filename" />
+          <result property="filepath" column="filepath" />
+          <result property="size" column="size" />
+          <result property="articleId" column="articleId" />
+      </collection>
+    
+    </resultMap>
+
+
+    <select id="selectArticleById" parameterType="int" resultMap="selectArticleByIdResultMap">
+
+        SELECT 
+          A.id as id,
+          A.title as title,
+          A.contents as contents,
+          A.writer as writer,
+          A.reg_date as regDate,
+          U.id as userId,
+          U.username as username,
+          U.email as email,
+          F.id as fileId,
+          F.filename as filename,
+          F.filepath as filepath,
+          F.size as size,
+          F.article_id as articleId
+        FROM article A
+        INNER JOIN user U
+          ON A.user_id = U.id
+        LEFT OUTER JOIN article_file  F
+          ON A.id = F.article_id
+        WHERE A.id = #{id}
+
+        
+    </select>
+
+
+
+</mapper>
