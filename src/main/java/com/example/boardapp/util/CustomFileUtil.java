@@ -140,7 +140,7 @@ public class CustomFileUtil {
     // 파일 다운로드 메소드
 
     public ResponseEntity<Resource> getFile(String fileName) {
-
+        // 파일 시스템에 있는 특정 파일이나 디렉토리 접근을 위해 제공
         Resource resouce = new FileSystemResource(uploadPath + File.separator + fileName);
         
         if (!resouce.isReadable())  {
