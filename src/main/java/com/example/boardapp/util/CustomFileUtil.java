@@ -151,6 +151,7 @@ public class CustomFileUtil {
         // HTTP 헤더 설정
         HttpHeaders headers = new HttpHeaders();
         try {
+            // Files.probeContentType(Path) 메서드는 파일의 경로나 확장자를 기반으로 해당 파일의 MIME 타입(Content-Type)을 결정합니다.
             headers.add("content-type", Files.probeContentType(resouce.getFile().toPath()));
 
         } catch(Exception ex) {
