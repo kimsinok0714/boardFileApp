@@ -58,7 +58,7 @@ public class CustomFileUtil {
         List<ArticleFileDto> articleFiles = new ArrayList<>();
 
         multipartFiles.forEach(multipartFile -> {
-
+            // 32자리 16진수 : 고유한 식별자를 생성
             String filename = UUID.randomUUID().toString() + "_" + multipartFile.getOriginalFilename();
 
             Path savePath = Paths.get(uploadPath, filename);
