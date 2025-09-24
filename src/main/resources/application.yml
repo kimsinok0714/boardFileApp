@@ -16,11 +16,9 @@ spring:
       location: /tmp/uploads
 
 # 업로드된 파일을 저장할 경로
-com:
-  example:
-    boardapp:
-      upload:
-        path: upload   # ./upload
+file:
+  upload:
+    path: upload   # ./upload
 
 
 # MyBatis 설정 정보
