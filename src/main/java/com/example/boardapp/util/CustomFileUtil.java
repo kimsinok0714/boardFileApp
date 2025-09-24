@@ -71,9 +71,10 @@ public class CustomFileUtil {
 
                 if (contentType != null && contentType.startsWith("image")) {                    
                     Path thumbnailPath = Paths.get(uploadPath, "s_" + filename);
-                    // 원본 이미지의 경로
+                    // 원본 이미지 파일 경로
                     // 썸네일 이미지가 저장될 경로
                     // 200 픽셀
+                    // 원본 이미지를 읽어서 200x200 크기의 썸네일 이미지를 만들어 지정한 경로에 저장합니다.
                     Thumbnailator.createThumbnail(savePath.toFile(), thumbnailPath.toFile(), 200, 200);
                 }
 
