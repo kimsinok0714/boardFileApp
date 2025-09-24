@@ -28,7 +28,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Component
 public class CustomFileUtil {
 
-    @Value("${com.example.boardapp.upload.path}")
+    @Value("${file.upload.path}")
     private String uploadPath;
 
 
