@@ -20,7 +20,7 @@ com:
   example:
     boardapp:
       upload:
-        path: upload
+        path: upload   # ./upload
 
 
 # MyBatis 설정 정보
