@@ -11,7 +11,11 @@
 
         INSERT INTO article_file1 ( filename, filepath, size, article_id )
         VALUES
-        
+
+        <!-- java.util.List 타입인 경우  기본 collection 값은 list -->  
+        <!-- java.util.List 타입인 경우  다른  collection 값은 fileList  -->
+        <!-- void insertArticleFile(@Param("fileList") List<ArticleFile> files) -->
+      
         <foreach collection="list" item="file" separator=",">
             ( #{file.filename}, #{file.filepath}, #{file.size}, #{file.articleId} ) 
         </foreach>
