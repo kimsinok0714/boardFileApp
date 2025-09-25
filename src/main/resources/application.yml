@@ -30,6 +30,7 @@ mybatis:
 # 로그 
 logging:
   level:
+    root: INFO   # (root loggr) 애플리케이션 전체의 기본 로그 레벨을 INFO
     com.example.boardapp.mapper: DEBUG
     org.mybatis: DEBUG
     org.springframework.jdbc.core: DEBUG
