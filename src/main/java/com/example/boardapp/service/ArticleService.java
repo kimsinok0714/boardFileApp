@@ -1,19 +1,16 @@
 package com.example.boardapp.service;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.boardapp.domain.ArticleDto;
 import com.example.boardapp.domain.ArticleFileDto;
 import com.example.boardapp.mapper.ArticleFileMapper;
 import com.example.boardapp.mapper.ArticleMapper;
 import com.example.boardapp.util.Criteria;
 import com.example.boardapp.util.CustomFileUtil;
-
 import lombok.RequiredArgsConstructor;
 
 
@@ -25,10 +22,8 @@ public class ArticleService {
     private final ArticleMapper articleMapper;
 
     private final ArticleFileMapper articleFileMapper;
-
         
     private final CustomFileUtil customFileUtil;
-
 
     public List<ArticleDto> retrieveArticleList() {
         return articleMapper.selectArticleList();
